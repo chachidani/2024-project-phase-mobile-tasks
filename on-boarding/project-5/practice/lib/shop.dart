@@ -13,11 +13,11 @@ class ShrineShop extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         actions: [
-          Icon(Icons.search),
+          IconButton(onPressed: () => {}, icon: Icon(Icons.search)),
           SizedBox(
             width: 20.0,
           ),
-          Icon(Icons.tune)
+          IconButton(onPressed: () => {}, icon: Icon(Icons.tune)),
         ],
       ),
       drawer: Drawer(),
@@ -28,36 +28,43 @@ class ShrineShop extends StatelessWidget {
         itemCount: bags.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
-            child: Column(
-              children: [
-                Flexible(
-                    child: FractionallySizedBox(
-                        widthFactor: 1.0,
-                        heightFactor: 0.7,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              topLeft: Radius.circular(20)),
-                          child: Image.asset(
-                            bags[index].image,
-                            fit: BoxFit.cover,
-                          ),
-                        ))),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Text(
-                  bags[index].name,
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Text(
-                  '${bags[index].price}ETB',
-                  style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
-                )
-              ],
+            clipBehavior: Clip.hardEdge,
+            child: InkWell(
+              onTap: () => {debugPrint('tapped')},
+              splashColor: Colors.lightBlueAccent[400],
+              child: Column(
+                children: [
+                  Flexible(
+                      child: FractionallySizedBox(
+                          widthFactor: 1.0,
+                          heightFactor: 0.7,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                topLeft: Radius.circular(20)),
+                            child: Image.asset(
+                              bags[index].image,
+                              fit: BoxFit.cover,
+                            ),
+                          ))),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    bags[index].name,
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    '${bags[index].price}ETB',
+                    style:
+                        TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
             ),
           );
         },
