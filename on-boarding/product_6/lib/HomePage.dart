@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:product_6/DetailsPage.dart';
+import 'package:product_6/SearchPage.dart';
 import 'package:product_6/data.dart';
 
 class HomePage extends StatelessWidget {
@@ -61,7 +63,12 @@ class HomePage extends StatelessWidget {
                         fontFamily: AutofillHints.countryName),
                   ),
                   IconButton.outlined(
-                      onPressed: () => {},
+                      onPressed: () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Searchpage()))
+                          },
                       icon: Icon(
                         Icons.search_outlined,
                         color: Colors.black54,
@@ -75,14 +82,20 @@ class HomePage extends StatelessWidget {
                   crossAxisCount: 1,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 1.5,
+                  childAspectRatio: 1.3,
                 ),
                 itemCount: Shoes.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
                     clipBehavior: Clip.hardEdge,
                     child: InkWell(
-                      onTap: () => {debugPrint('tapped')},
+                      onTap: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Detailspage(shoes: Shoes[index])))
+                      },
                       splashColor: Colors.indigoAccent.shade400,
                       child: Column(
                         children: [
@@ -131,8 +144,7 @@ class HomePage extends StatelessWidget {
                                 Text(
                                   "Men's shoe",
                                   style: TextStyle(
-                                      fontSize: 10.0,
-                                      fontWeight: FontWeight.w300),
+                                      fontSize: 10.0, color: Colors.black45),
                                 ),
                                 Row(
                                   children: [
@@ -144,7 +156,7 @@ class HomePage extends StatelessWidget {
                                       '(4.0)',
                                       style: TextStyle(
                                           fontSize: 10.0,
-                                          fontWeight: FontWeight.w300),
+                                          color: Colors.black45),
                                     ),
                                   ],
                                 )
@@ -155,11 +167,18 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   );
-                  ;
                 },
               ),
             ),
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.indigoAccent.shade400,
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
         ),
       ),
     );
